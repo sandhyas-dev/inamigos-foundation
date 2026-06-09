@@ -392,9 +392,7 @@ p {
     font-size: 5rem;
     font-weight: 800;
     line-height: 1.1;
-    .hero__title{
-   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-}
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
 }
 
 .hero__subtitle {
@@ -1105,13 +1103,17 @@ p {
     }
 
     .impact__stat {
-    width: 45%;
+    width: calc(50% - 10px);
     padding: 1.5rem;
     min-height: auto;
+    background-color: rgba(255,255,255,0.1);
     }
 
     .impact__stat-number {
     font-size: 2rem;
+    }
+    .image-credit {
+    display: none;
     }
 }
 
