@@ -1,0 +1,1171 @@
+/* ===================== 1. CSS VARIABLES (Design System) ===================== */
+/* Define all colors, fonts, and spacing in one place for easy maintenance */
+
+:root {
+    /* -------- Colors -------- */
+    /* Primary Colors - Main brand colors */
+  --primary-color: #0d9488;
+--primary-dark: #0f766e;
+--primary-light: #5eead4;
+    
+    /* Secondary Colors - Accent colors */
+    --secondary-color: #00b386;         /* Green */
+    --secondary-dark: #008066;          /* Dark Green */
+    --secondary-light: #33cc99;         /* Light Green */
+    
+    /* Neutral Colors */
+    --white: #ffffff;
+    --black: #000000;
+    --gray-dark: #1a1a1a;              /* Dark Gray for text */
+    --gray-medium: #666666;            /* Medium Gray for secondary text */
+    --gray-light: #f5f5f5;             /* Light Gray for backgrounds */
+    --gray-lighter: #f9f9f9;           /* Very light gray */
+    
+    /* Status Colors */
+    --success: #28a745;                /* Green */
+    --danger: #dc3545;                 /* Red */
+    --warning: #ffc107;                /* Yellow */
+    --info: #17a2b8;                   /* Cyan */
+    
+    /* -------- Typography -------- */
+    --font-primary: 'Poppins', sans-serif;
+    --font-size-base: 16px;
+    --font-size-small: 14px;
+    --font-size-large: 18px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 48px;
+    
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* -------- Spacing -------- */
+    --spacing-xs: 0.25rem;     /* 4px */
+    --spacing-sm: 0.5rem;      /* 8px */
+    --spacing-md: 1rem;        /* 16px */
+    --spacing-lg: 1.5rem;      /* 24px */
+    --spacing-xl: 2rem;        /* 32px */
+    --spacing-2xl: 3rem;       /* 48px */
+    --spacing-3xl: 4rem;       /* 64px */
+    
+    /* -------- Border Radius -------- */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    
+    /* -------- Shadows -------- */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.25);
+    
+    /* -------- Transitions -------- */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* -------- Z-Index Scale -------- */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal: 400;
+}
+
+/* ===================== 2. RESET & BASE STYLES ===================== */
+/* Remove default browser styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;  /* Smooth scrolling when clicking anchor links */
+    font-size: var(--font-size-base);
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--gray-dark);
+    background-color: var(--white);
+    overflow-x: hidden;  /* Prevent horizontal scroll */
+}
+
+/* Remove list styles */
+ul, ol {
+    list-style: none;
+}
+
+/* Remove link underlines and styling */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* ===================== 3. TYPOGRAPHY ===================== */
+/* Define heading and text styles */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+    margin-bottom: var(--spacing-lg);
+}
+
+h1 {
+    font-size: var(--font-size-3xl);
+}
+
+h2 {
+    font-size: var(--font-size-2xl);
+}
+
+h3 {
+    font-size: var(--font-size-xl);
+}
+
+h4 {
+    font-size: var(--font-size-large);
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+/* ===================== 4. LAYOUT & CONTAINER ===================== */
+/* Main layout container for all sections */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);  /* Side padding for mobile */
+}
+
+/* ===================== 5. SECTION HEADER (Reusable) ===================== */
+/* Used for all section titles and subtitles */
+
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--gray-dark);
+}
+
+/* Underline decoration under section titles */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: var(--radius-full);
+}
+
+.section-subtitle {
+    font-size: var(--font-size-large);
+    color: var(--gray-medium);
+    margin-top: var(--spacing-xl);
+}
+
+/* ===================== 6. BUTTONS ===================== */
+/* Reusable button styles */
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Primary Button - Main CTA */
+.btn--primary {
+    background-color: #009688;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+.btn--secondary:hover {
+    background-color: #00b386;
+    color: white;
+}
+
+/* Secondary Button - Alternative CTA */
+.btn--secondary {
+    background-color: transparent;
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.btn--secondary:hover {
+    background-color: var(--white);
+    color: var(--primary-color);
+}
+
+/* Large Button - For prominent CTAs */
+.btn--large {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    font-size: var(--font-size-large);
+}
+
+/* ===================== 7. HEADER/NAVIGATION ===================== */
+/* Fixed header that stays at top while scrolling */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background-color: var(--white);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+}
+
+/* Logo Section */
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+     margin-right: 80px;
+}
+
+.header__logo-img {
+    max-height: 55px;
+   
+}
+
+.header__logo-text {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+     white-space: nowrap;
+}
+
+/* Navigation Menu */
+.navbar__list {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.navbar__link {
+    font-weight: var(--font-weight-medium);
+    color: var(--gray-dark);
+    position: relative;
+}
+.navbar__link.active {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.navbar__link.active::after {
+    width: 100%;
+}
+
+/* Underline animation on hover */
+.navbar__link:hover{
+   color: var(--primary-color);
+   transform: translateY(-2px);
+}
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width var(--transition-base);
+}
+
+.navbar__link:hover::after {
+    width: 100%;
+}
+
+/* Mobile Menu Toggle Button */
+.menu-toggle {
+    display: none;  /* Hidden on desktop */
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--gray-dark);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+}
+
+/* ===================== 8. HERO SECTION ===================== */
+/* Main banner section at the top of page */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Background image with overlay */
+.hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.hero__bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Fit image to container */
+    object-position: center;
+}
+
+/* Overlay for text readability */
+.hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0, 0, 0, 0.55);  /* Semi-transparent black */
+    z-index: -1;
+}
+
+.hero__content {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    z-index: 1;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.hero__title {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    .hero__title{
+   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+}
+
+.hero__subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.hero__buttons {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+}
+
+/* ===================== 9. ABOUT SECTION ===================== */
+/* About us, mission, vision, values */
+
+.about {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--gray-lighter);
+}
+
+.about__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3xl);
+}
+
+.about__text {
+    grid-column: 1;
+}
+
+.about__heading {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.about__description {
+    font-size: var(--font-size-large);
+    color: var(--gray-medium);
+    line-height: 1.8;
+}
+
+/* Grid for Mission, Vision, Values cards */
+.about__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.about__card {
+    background-color: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+}
+
+.about__card:hover {
+    transform: translateY(-8px);  /* Lift on hover */
+    box-shadow: var(--shadow-lg);
+}
+
+.about__card-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.about__card-title {
+    color: var(--gray-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.about__card-text {
+    color: var(--gray-medium);
+    line-height: 1.7;
+}
+
+/* ===================== 10. PROJECTS SECTION ===================== */
+/* Project cards with images */
+
+.projects {
+    padding: var(--spacing-3xl) 0;
+}
+
+.projects__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.project-card {
+    background-color: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+}
+
+/* Project Image Container */
+.project-card__image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+}
+
+.project-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+}
+
+.project-card:hover .project-card__img {
+    transform: scale(1.1);  /* Zoom image on hover */
+}
+
+/* Overlay on image */
+.project-card__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 102, 204, 0.8);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.project-card:hover .project-card__overlay {
+    opacity: 1;
+}
+
+.project-card__content {
+    padding: var(--spacing-lg);
+    position: relative;
+}
+
+.project-card__title {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-xl);
+}
+
+.project-card__description {
+    color: var(--gray-medium);
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+}
+
+/* Project Icon */
+.project-card__icon {
+    position: absolute;
+    top: -12px;
+    right: var(--spacing-lg);
+    font-size: 2rem;
+    color: var(--secondary-color);
+    background-color: var(--white);
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+}
+
+/* ===================== 11. IMPACT SECTION ===================== */
+/* Statistics and numbers */
+
+.impact {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+}
+
+/* Override section header for this section */
+.impact .section-title,
+.impact .section-subtitle {
+    color: var(--white);
+}
+
+.impact .section-title::after {
+    background: var(--white);
+}
+
+.impact__stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.impact__stat {
+    text-align: center;
+    padding: 3rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    min-height: 220px;
+}
+.impact__stat:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-8px);
+}
+
+.impact__stat-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.impact__stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    display: block;
+}
+
+.impact__stat-text {
+    font-size: var(--font-size-small);
+    opacity: 0.95;
+}
+.impact-cards {
+    gap: 2rem;
+}
+/* ===================== 12. GALLERY SECTION ===================== */
+/* Image gallery */
+
+.gallery {
+    padding: var(--spacing-3xl) 0;
+    background-color: var(--gray-lighter);
+}
+
+.gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.gallery__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 1;  /* Square images */
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+}
+
+.gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-base);
+}
+
+.gallery__item:hover .gallery__img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* Overlay on gallery items */
+.gallery__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+   background: rgba(0, 102, 255, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.gallery__item:hover .gallery__overlay {
+    opacity: 1;
+}
+
+.gallery__caption {
+    color: var(--white);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+}
+
+/* ===================== 13. VOLUNTEER BENEFITS SECTION ===================== */
+/* Benefits of volunteering */
+
+.volunteer-benefits {
+    padding: var(--spacing-3xl) 0;
+}
+
+.benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.benefit-card {
+    background-color: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-color);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: all var(--transition-base);
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-left-color: var(--secondary-color);
+}
+
+.benefit-card__icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+    transition: color var(--transition-base);
+}
+
+.benefit-card:hover .benefit-card__icon {
+    color: var(--secondary-color);
+}
+
+.benefit-card__title {
+    color: var(--gray-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.benefit-card__text {
+    color: var(--gray-medium);
+    line-height: 1.7;
+    font-size: var(--font-size-base);
+}
+
+/* ===================== 14. CTA SECTION ===================== */
+/* Main call-to-action section */
+
+.cta {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+    color: var(--white);
+    text-align: center;
+}
+
+.cta__content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta__title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+.cta__text {
+    font-size: var(--font-size-large);
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.95;
+}
+
+.cta__buttons {
+    display: flex;
+    gap: var(--spacing-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===================== 15. FOOTER ===================== */
+/* Footer with contact and links */
+
+.footer {
+    background-color: var(--gray-dark);
+    color: var(--white);
+    padding: var(--spacing-3xl) 0 var(--spacing-xl);
+}
+
+.footer__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+
+.footer__section h4 {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: var(--spacing-md);
+}
+
+.footer__text {
+    color: var(--gray-medium);
+    line-height: 1.7;
+}
+
+.footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.footer__links a {
+    color: var(--gray-medium);
+    transition: color var(--transition-base);
+}
+
+.footer__links a:hover {
+    color: var(--primary-light);
+}
+
+.footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    color: var(--gray-medium);
+}
+
+.footer__contact i {
+    color: var(--primary-light);
+    margin-right: var(--spacing-md);
+}
+
+.footer__contact a {
+    color: var(--gray-medium);
+}
+
+/* Social Media Links */
+.footer__socials {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.footer__socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    color: var(--white);
+    transition: all var(--transition-base);
+}
+
+.footer__socials a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-4px);
+}
+
+/* Copyright section */
+.footer__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--spacing-lg);
+    text-align: center;
+    color: var(--gray-medium);
+}
+
+.footer__bottom p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* ===================== 16. BACK TO TOP BUTTON ===================== */
+/* Floating button to go back to top */
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-base);
+    z-index: var(--z-fixed);
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+}
+
+.back-to-top.show {
+    display: flex;
+}
+
+/* ===================== 17. ANIMATIONS ===================== */
+/* Reusable animations */
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ===================== 18. RESPONSIVE DESIGN ===================== */
+/* Mobile, Tablet, Desktop breakpoints */
+
+/* -------- Tablet (768px and below) -------- */
+@media screen and (max-width: 768px) {
+    /* Adjust font sizes for smaller screens */
+    :root {
+        --font-size-base: 14px;
+        --font-size-3xl: 32px;
+        --font-size-2xl: 24px;
+    }
+    
+    /* Container padding */
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    /* Header adjustments */
+    .header__logo-text {
+        display: none;  /* Hide text on mobile */
+    }
+    
+    /* Menu toggle visible */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    /* Navigation hidden on mobile (shown with JS) */
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--white);
+        flex-direction: column;
+        display: none;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .navbar.active {
+        display: flex;
+    }
+    
+    .navbar__list {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .navbar__link {
+        padding: var(--spacing-md) var(--spacing-lg);
+        border-bottom: 1px solid var(--gray-light);
+        display: block;
+    }
+    
+    /* Hero adjustments */
+    .hero {
+        min-height: 70vh;
+    }
+    
+    .hero__title {
+        font-size: 1.8rem;
+    }
+    
+    .hero__subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .hero__buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    /* Grid adjustments */
+    .projects__grid,
+    .about__grid,
+    .benefits__grid,
+    .impact__stats {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Section padding */
+    .about,
+    .projects,
+    .gallery,
+    .volunteer-benefits,
+    .cta,
+    .footer {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-2xl);
+    }
+    
+    /* Back to top button positioning */
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* -------- Mobile (480px and below) -------- */
+@media screen and (max-width: 480px) {
+    :root {
+        --font-size-base: 13px;
+        --font-size-3xl: 24px;
+        --spacing-xl: 1rem;
+        --spacing-2xl: 1.5rem;
+    }
+    
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    h1 {
+        font-size: 1.6rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    /* Hero title */
+    .hero__title {
+        font-size: 1.5rem;
+    }
+    
+    /* Cards full width */
+    .project-card,
+    .about__card,
+    .benefit-card {
+        margin: 0;
+    }
+    
+    /* Footer adjustments */
+    .footer__content {
+        gap: var(--spacing-lg);
+    }
+    
+    .footer__socials {
+        justify-content: center;
+    }
+}
+
+/* -------- Large Desktop (1024px and above) -------- */
+@media screen and (min-width: 1024px) {
+    /* Enlarge some elements on larger screens */
+    .hero__title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    /* Wider grid columns */
+    .projects__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .about__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ===================== 19. ACCESSIBILITY ===================== */
+/* Ensure accessibility standards */
+
+/* Focus styles for keyboard navigation */
+a:focus,
+button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Remove outline on mouse click */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* High contrast for readability */
+@media (prefers-contrast: more) {
+    body {
+        letter-spacing: 0.05em;
+    }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===================== 20. PRINT STYLES ===================== */
+/* Optimize for printing */
+
+@media print {
+    .header,
+    .back-to-top,
+    .cta__buttons {
+        display: none;
+    }
+    
+    body {
+        color: var(--black);
+        background-color: var(--white);
+    }
+    
+    a {
+        color: var(--gray-dark);
+    }
+}
