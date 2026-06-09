@@ -1099,6 +1099,20 @@ p {
     .footer__socials {
         justify-content: center;
     }
+    .impact__stats {
+    flex-wrap: wrap;
+    gap: 10px;
+    }
+
+    .impact__stat {
+    width: 45%;
+    padding: 1.5rem;
+    min-height: auto;
+    }
+
+    .impact__stat-number {
+    font-size: 2rem;
+    }
 }
 
 /* -------- Large Desktop (1024px and above) -------- */
